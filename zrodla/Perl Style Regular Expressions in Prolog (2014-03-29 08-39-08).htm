@@ -1,0 +1,290 @@
+﻿<html><!--
+ Archive processed by SingleFile 
+ url: http://www.cs.sfu.ca/~cameron/Teaching/384/99-3/regexp-plg.html 
+ saved date: Sat Mar 29 2014 08:39:07 GMT+0100 (CET) 
+--><head><title>Perl Style Regular Expressions in Prolog</title>
+<style type="text/css">
+     BODY { background: white; }
+     H1.doctitle {text-align:center;}
+     H4.dochead {text-align:right;}
+</style>
+<style type="text/css"></style><style type="text/css"></style><link type="image/x-icon" rel="shortcut icon" href="data:text/html;base64,CgoKPCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IlgtVUEtQ29tcGF0aWJsZSIgY29udGVudD0iSUU9RWRnZSwgY2hyb21lPTEiPgogICAgPG1ldGEgaHR0cC1lcXVpdj0iY29udGVudC10eXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTgiIC8+CiAgICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCwgbWF4aW11bS1zY2FsZT0xLjAiPgoKICAgIDx0aXRsZT5QYWdlIG5vdCBGb3VuZCAoNDA0IEVycm9yKTwvdGl0bGU+CgogICAgPHNjcmlwdCBzcmM9Ii9ldGMvY2xpZW50bGlicy9mb3VuZGF0aW9uL2pxdWVyeS5qcyIgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij48L3NjcmlwdD4KICAgIDxzY3JpcHQgc3JjPSIvZXRjL2NsaWVudGxpYnMvZm91bmRhdGlvbi9qcXVlcnktdWkuanMiIHR5cGU9InRleHQvamF2YXNjcmlwdCI+PC9zY3JpcHQ+CiAgICA8c2NyaXB0IHNyYz0iL2V0Yy9kZXNpZ25zL2NsZi9jbGllbnRsaWJzL3BhY2svaGVhZC5zY3JpcHRzLmpzIiB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPjwvc2NyaXB0PgogICAgPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPnZhciAkID0galF1ZXJ5Ozwvc2NyaXB0PgoKICAgIDxsaW5rIHR5cGU9InRleHQvY3NzIiBocmVmPSIvZXRjL2Rlc2lnbnMvY2xmL2NsaWVudGxpYnMvcGFjay9oZWFkLnN0eWxlcy5jc3MiIHJlbD0ic3R5bGVzaGVldCI+CiAgICA8c3R5bGU+CiAgICAgICAgLnNmLW1lbnUgewogICAgICAgICAgICB0b3A6IDEwcHg7CiAgICAgICAgfQoKICAgICAgICBmb290ZXIgcCB7CiAgICAgICAgICAgIG1hcmdpbi10b3A6IDA7CiAgICAgICAgfQoKICAgIDwvc3R5bGU+CgogICAgPCEtLVtpZiBsdCBJRSA5XT4KICAgIDxzY3JpcHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0IiBzcmM9Ii9ldGMvZGVzaWducy9jbGYvY2xpZW50bGlicy9odG1sNXNoaXYuanMiPjwvc2NyaXB0PgogICAgPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIHNyYz0iL2V0Yy9kZXNpZ25zL2NsZi9jbGllbnRsaWJzL3Jlc3BvbmQuanMiPjwvc2NyaXB0PgogICAgPCFbZW5kaWZdLS0+Cgo8L2hlYWQ+Cjxib2R5PgoKICAgIDxkaXYgaWQ9ImNvbnRhaW5lciI+CgogICAgICAgIDxkaXYgaWQ9InBhZ2UiPgoKICAgICAgICAgICAgPGhlYWRlcj4KCiAgICAgICAgICAgICAgICA8YnV0dG9uIGNsYXNzPSJ0b2dnbGUtc2VhcmNoLWNvbnRyb2wiPlNlYXJjaDwvYnV0dG9uPgoKICAgICAgICAgICAgICAgIDxzZWN0aW9uIGNsYXNzPSJoZWFkaW5nIj4KCiAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYnJhbmQtdGl0bGUiPgoKICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iYnJhbmRpbmciPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGgxPlNpbW9uIEZyYXNlciBVbml2ZXJzaXR5PGJyLz5FbmdhZ2luZyB0aGUgV29ybGQ8L2gxPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvYT4gPCEtLSBlbmQgYnJhbmRpbmcgLS0+CgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgICAgIDwvc2VjdGlvbj4gPCEtLSBlbmQgLmhlYWRpbmcgLS0+CgogICAgICAgICAgICAgICAgPHNlY3Rpb24gY2xhc3M9ImFjdGlvbmFibGUtaGVhZGVyIj4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWFyY2giPgogICAgICAgICAgICAgICAgICAgICAgICA8Zm9ybSBtZXRob2Q9ImdldCIgYWN0aW9uPSJodHRwOi8vd3d3LnNmdS5jYS9zZWFyY2guaHRtbCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZmllbGRzZXQgY2xhc3M9InNlYXJjaC1maWVsZCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9InNlYXJjaCIgbmFtZT0icSIgcGxhY2Vob2xkZXI9IlNlYXJjaCI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2ZpZWxkc2V0PgogICAgICAgICAgICAgICAgICAgICAgICA8L2Zvcm0+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgPCEtLSBlbmQgc2VhcmNoIC0tPgoKICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJnbG9iYWwtbGlua3MiPgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJtb2JpbGUtZ2xvYmFsLWxpbmtzLWNvbnRhaW5lciI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8dWwgY2xhc3M9Im1vYmlsZS1nbG9iYWwtbGlua3MiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaSBjbGFzcz0iaGVhZGVyIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvZGlyZWN0b3J5Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEEtWiA8c3Bhbj5kaXJlY3Rvcnk8L3NwYW4+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaSBjbGFzcz0iaGVhZGVyIHNpZ24taW4iPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIjIiBjbGFzcz0ibW9iaWxlLXRvZ2dsZSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBTaWduIGluCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3BhbiBjbGFzcz0iaWNvbiBpY29uLXBsdXMtc2lnbiI+PC9zcGFuPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2E+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx1bD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vY29ubmVjdC5zZnUuY2EiPkNvbm5lY3Q8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vZ28uc2Z1LmNhIj5TSVM8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2NhbnZhcy5zZnUuY2EiPkNhbnZhczwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3VsPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3VsPgogICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgICAgICAgICAgICAgIDx1bCBjbGFzcz0ic2YtbWVudSBzZi1qcy1lbmFibGVkIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIjIj5BLVogRGlyZWN0b3J5PC9hPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx1bCBjbGFzcz0iZXhwYW5kZWQgZGlyZWN0b3J5IiBzdHlsZT0iZGlzcGxheTogbm9uZTsgdmlzaWJpbGl0eTogaGlkZGVuOyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci9hLmh0bWwiPmE8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL2IuaHRtbCI+YjwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvbWFpbi9kaXIvYy5odG1sIj5jPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci9kLmh0bWwiPmQ8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL2UuaHRtbCI+ZTwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvbWFpbi9kaXIvZi5odG1sIj5mPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci9nLmh0bWwiPmc8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL2guaHRtbCI+aDwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvbWFpbi9kaXIvaS5odG1sIj5pPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci9qLmh0bWwiPmo8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL2suaHRtbCI+azwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvbWFpbi9kaXIvbC5odG1sIj5sPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci9tLmh0bWwiPm08L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL24uaHRtbCI+bjwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvbWFpbi9kaXIvby5odG1sIj5vPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci9wLmh0bWwiPnA8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL3EuaHRtbCI+cTwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvbWFpbi9kaXIvci5odG1sIj5yPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci9zLmh0bWwiPnM8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL3QuaHRtbCI+dDwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvbWFpbi9kaXIvdS5odG1sIj51PC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci92Lmh0bWwiPnY8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL3cuaHRtbCI+dzwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvbWFpbi9kaXIveC5odG1sIj54PC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9tYWluL2Rpci95Lmh0bWwiPnk8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL21haW4vZGlyL3ouaHRtbCI+ejwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdWw+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2xpPgoKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIjIj5TaWduIGluPC9hPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx1bCBjbGFzcz0iZXhwYW5kZWQiIHN0eWxlPSJkaXNwbGF5OiBub25lOyB2aXNpYmlsaXR5OiBoaWRkZW47Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly9jb25uZWN0LnNmdS5jYSI+U0ZVIENvbm5lY3QgKyBteVNGVTwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL2dvLnNmdS5jYSI+U3R1ZGVudCBJbmZvcm1hdGlvbiBTeXN0ZW08L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vY2FudmFzLnNmdS5jYSI+Q2FudmFzPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvdWw+CgogICAgICAgICAgICAgICAgICAgIDwvZGl2PiA8IS0tIGVuZCBzZi1tZW51IHNmLW5hdmJhciAtLT4KCiAgICAgICAgICAgICAgICA8L3NlY3Rpb24+IDwhLS0gZW5kIGdsb2JhbC1saW5rcyAtLT4KCiAgICAgICAgICAgIDwvaGVhZGVyPgoKICAgICAgICAgICAgPGRpdiBjbGFzcz0iaGVhZGVyLWRpdmlkZXIiPjwvZGl2PgoKCiAgICAgICAgICAgIDxkaXYgaWQ9InBhZ2UtY29udGVudCIgY2xhc3M9Im5vLW5hdmlnYXRpb24iPgoKCiAgICAgICAgICAgICAgICA8c2VjdGlvbiBjbGFzcz0ibWFpbiI+CgoKICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJtYWluX2NvbnRlbnQiPgoKICAgICAgICAgICAgICAgICAgICAgICAgICAgIAoKICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9ImFsZXJ0Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGgxPlBhZ2Ugbm90IEZvdW5kICg0MDQgRXJyb3IpPC9oMT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHA+VW5mb3J0dW5hdGVseSwgdGhlIHBhZ2UgeW91JiM4MjE3O3ZlIHJlcXVlc3RlZCAoPHN0cm9uZz5odHRwOi8vd3d3LmNzLnNmdS5jYS9mYXZpY29uLmljbzwvc3Ryb25nPikgY2Fubm90IGJlIGZvdW5kLjwvcD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgIAoKICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KCgogICAgICAgICAgICAgICAgPC9zZWN0aW9uPgoKCiAgICAgICAgICAgICAgICA8Zm9vdGVyPgogICAgICAgICAgICAgICAgICAgIDx1bD4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL2FkbWlzc2lvbiI+QWRtaXNzaW9uPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9wcm9ncmFtcyI+UHJvZ3JhbXM8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL2xlYXJuaW5nIj5MZWFybmluZzwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvcmVzZWFyY2gtYXQtc2Z1Ij5SZXNlYXJjaDwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2Evc2Z1LWNvbW11bml0eSI+Q29tbXVuaXR5PC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9hYm91dCI+QWJvdXQ8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICA8L3VsPgoKICAgICAgICAgICAgICAgICAgICA8dWw+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9jYW1wdXNlcy9tYXBzLmh0bWwiPk1hcHMgKyBkaXJlY3Rpb25zPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LmxpYi5zZnUuY2EvIj5MaWJyYXJ5PC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vd3d3LnNmdS5jYS9jYWxlbmRhciI+QWNhZGVtaWMgQ2FsZW5kYXI8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2Z1LmNhL3JvYWRzIj5Sb2FkIFJlcG9ydDwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cDovL3d3dy5zZnUuY2EvYWR2YW5jZW1lbnQiPkdpdmUgdG8gU0ZVPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgPC91bD4KCiAgICAgICAgICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgICAgICAgICAgICA8bGkgY2xhc3M9ImhlYWRlciI+Q29ubmVjdCB3aXRoIHVzPC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHA+PGEgaHJlZj0iaHR0cDovL3d3dy5mYWNlYm9vay5jb20vc2ltb25mcmFzZXJ1bml2ZXJzaXR5Ij5GYWNlYm9vazwvYT48YnI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSJodHRwOi8vd3d3LnR3aXR0ZXIuY29tL3NmdSI+VHdpdHRlcjwvYT48YnI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSJodHRwOi8vd3d3LnlvdXR1YmUuY29tL3VzZXIvU0ZVTmV3cyI+WW91VHViZTwvYT48L3A+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvbGk+CiAgICAgICAgICAgICAgICAgICAgPC91bD4KCiAgICAgICAgICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgICAgICAgICAgICA8bGkgY2xhc3M9ImhlYWRlciI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIvY29udGFjdC5odG1sIj5Db250YWN0IHVzPC9hPgogICAgICAgICAgICAgICAgICAgICAgICA8L2xpPgogICAgICAgICAgICAgICAgICAgICAgICA8bGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8cD48YSBocmVmPSIvY29udGFjdC9idXJuYWJ5Lmh0bWwiPkJ1cm5hYnkgY2FtcHVzPC9hPjxicj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIvY29udGFjdC9zdXJyZXkuaHRtbCI+U3VycmV5IGNhbXB1czwvYT48YnI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iL2NvbnRhY3QvdmFuY291dmVyLmh0bWwiPlZhbmNvdXZlciBjYW1wdXM8L2E+PC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8L2xpPgogICAgICAgICAgICAgICAgICAgIDwvdWw+CgogICAgICAgICAgICAgICAgICAgIDx1bD4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9jb250YWN0L3Rlcm1zLWNvbmRpdGlvbnMuaHRtbCI+VGVybXMgYW5kIGNvbmRpdGlvbnM8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPiYjMTY5OyBTaW1vbiBGcmFzZXIgVW5pdmVyc2l0eTwvbGk+CiAgICAgICAgICAgICAgICAgICAgPC91bD4KCiAgICAgICAgICAgICAgICA8L2Zvb3Rlcj4KCiAgICAgICAgICAgIDwvZGl2PiA8IS0tIGVuZCBwYWdlLWNvbnRlbnQgLS0+CiAgICAgICAgPC9kaXY+IDwhLS0gZW5kIHBhZ2UgLS0+CiAgICA8L2Rpdj4gPCEtLSBlbmQgY29udGFpbmVyIC0tPgoKICAgIDxzY3JpcHQgc3JjPSIvZXRjL2Rlc2lnbnMvY2xmL2NsaWVudGxpYnMvcGFjay9mb290ZXIuc2NyaXB0cy5qcyIgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij48L3NjcmlwdD4KICAgIDxzY3JpcHQgc3JjPSIvZXRjL2Rlc2lnbnMvc2Z1L2NsaWVudGxpYnMvdG9nZ2xlRm9ybUNvbnRlbnQuanMiIHR5cGU9InRleHQvamF2YXNjcmlwdCI+PC9zY3JpcHQ+Cgo8L2JvZHk+CjwvaHRtbD4="></head>
+<body>
+<h1 class="doctitle">Perl Style Regular Expressions in Prolog</h1>
+<h4 class="dochead">CMPT 384 Lecture Notes<br>
+Robert D. Cameron<br>
+November 29 - December 1, 1999</h4>
+
+
+<h2>Case Study: Implementing Perl Style Regular Expressions</h2>
+<p>
+A Prolog system for processing Perl style regular expressions
+can be implemented via the following steps.
+</p><ol>
+<li>Defining the BNF grammar of Perl-style regular expressions.
+</li><li>Defining a Prolog representation of Perl regular expressions.
+</li><li>Build a DCG parser for Perl regular expressions.
+</li><li>Building a regular expression matcher in Prolog.
+</li></ol>
+<p>
+This is a useful case study of symbolic computing in Prolog
+and also an exploration of the semantics of regular expressions.
+
+
+
+</p><h2>BNF Grammar of Regular Expressions</h2>
+<p>
+Following the precedence rules given previously, a BNF
+grammar for Perl-style regular expressions can be
+constructed as follows.
+
+<table>
+<tbody><tr><td>&lt;RE&gt; </td><td> ::= </td><td>
+ &lt;union&gt;&nbsp;|  
+ &lt;simple-RE&gt;</td></tr>
+<tr><td>&lt;union&gt; </td><td> ::=</td><td>&lt;RE&gt; "<code>|</code>" &lt;simple-RE&gt; 
+</td></tr>
+<tr><td>&lt;simple-RE&gt; </td><td> ::= </td><td>
+   &lt;concatenation&gt;&nbsp;|  &lt;basic-RE&gt;   </td></tr>
+<tr><td>&lt;concatenation&gt; 
+</td><td> ::=</td><td>&lt;simple-RE&gt; &lt;basic-RE&gt;  </td></tr>
+<tr><td>&lt;basic-RE&gt; </td><td> ::=</td><td>
+   &lt;star&gt;&nbsp;|  &lt;plus&gt;&nbsp;| &lt;elementary-RE&gt;   </td></tr>
+<tr><td>&lt;star&gt; 
+</td><td> ::=</td><td>&lt;elementary-RE&gt; "<code>*</code>"  </td></tr>
+<tr><td>&lt;plus&gt; 
+</td><td> ::=</td><td>&lt;elementary-RE&gt; "<code>+</code>"  </td></tr>
+<tr><td>&lt;elementary-RE&gt; </td><td> ::=</td><td>
+   &lt;group&gt;&nbsp;|  
+   &lt;any&gt;&nbsp;| &lt;eos&gt;&nbsp;|  &lt;char&gt;&nbsp;| &lt;set&gt;</td></tr>
+<tr><td>&lt;group&gt; </td><td> ::=
+</td><td>"<code>(</code>" &lt;RE&gt; "<code>)</code>" </td></tr>
+<tr><td>&lt;any&gt; </td><td> ::= </td><td>"<code>.</code>"</td></tr>
+<tr><td>&lt;eos&gt; </td><td> ::= </td><td>"<code>$</code>"</td></tr>
+<tr><td>&lt;char&gt; </td><td> ::= </td><td>any non metacharacter | "\" metacharacter</td></tr>
+<tr><td>&lt;set&gt; </td><td> ::= </td><td> &lt;positive-set&gt;&nbsp;|  &lt;negative-set&gt;</td></tr>
+<tr><td>&lt;positive-set&gt; </td><td> ::= </td><td>"<code>[</code>" &lt;set-items&gt; "<code>]</code>"</td></tr>
+<tr><td>&lt;negative-set&gt; </td><td> ::= </td><td>"<code>[^</code>" &lt;set-items&gt; "<code>]</code>"</td></tr>
+<tr><td>&lt;set-items&gt; </td><td> ::= </td><td>&lt;set-item&gt; | &lt;set-item&gt; &lt;set-items&gt;</td></tr>
+<tr><td>&lt;set-items&gt; </td><td> ::= </td><td>&lt;range&gt; | &lt;char&gt;</td></tr>
+<tr><td>&lt;range&gt; </td><td> ::= </td><td>&lt;char&gt; "<code>-</code>" &lt;char&gt;</td></tr>
+</tbody></table>
+
+</p><h2>Prolog Representation of Regular Expressions</h2>
+<p>
+To represent regular expressions as symbolic objects
+in Prolog, we specify that
+<code>union</code>/2,
+<code>conc</code>/2,
+<code>star</code>/1,
+<code>plus</code>/1,
+and <code>group</code>/1 represent
+the five types of structured (recursively defined)
+regular expression.
+The symbolic atoms <code>any</code> and eos
+represent the metacharacters "<code>.</code>" and "<code>$</code>",
+while <code>char</code>/1 represents a single character.
+Positive and negative sets are represented respectively
+as <code>posSet</code>/1 and <code>negSet</code>/1, in which
+set items are enclosed in a list.  The set items may be 
+individual <code>char</code>/1 items or <code>range</code>/2
+structures for character ranges.
+
+</p><h2>DCG Parser for Regular Expressions</h2>
+<p>
+Constructing the DCG parser requires apply the left recursion
+removal techniques illustrated earlier for both the
+&lt;RE&gt; and &lt;basic-RE&gt; productions.
+We also left factor the &lt;simple-RE&gt;
+production to avoid backtracking.
+
+</p><pre>re(Z) --&gt; basicRE(W), reTail(W, Z).
+reTail(W, Z) --&gt; "|", basicRE(X), reTail(union(W,X), Z).
+reTail(W, W) --&gt; {true}.
+basicRE(Z) --&gt; simpleRE(W), basicREtail(W, Z).
+basicREtail(W, Z) --&gt; simpleRE(X), basicREtail(conc(W,X), Z).
+basicREtail(W, W) --&gt; {true}.
+simpleRE(Z) --&gt; elementalRE(W), simpleREtail(W, Z).
+simpleREtail(W, star(W)) --&gt; "*".
+simpleREtail(W, plus(W)) --&gt; "+".
+simpleREtail(W, W) --&gt; {true}.
+elementalRE(any) --&gt; ".".
+elementalRE(group(X)) --&gt; "(", re(X), ")".
+elementalRE(eos) --&gt; "$".
+elementalRE(char(C)) --&gt; [C], {\+(re_metachar([C]))}.
+re_metachar("\\").
+re_metachar("\|").
+re_metachar("*").
+re_metachar("+").
+re_metachar("\.").
+re_metachar("[").
+re_metachar("$").
+re_metachar("(").
+re_metachar(")").
+elementalRE(char(C)) --&gt; "\\", [C], {re_metachar([C])}.
+%  For sets, first try the negative set syntax.  If the "[^" recognition
+%  succeeds, use cut to make sure that any subsequent failure does not
+%  cause the positive set interpretation to be used.
+elementalRE(negSet(X)) --&gt; "[^", {!}, setItems(X), "]".
+elementalRE(posSet(X)) --&gt; "[", setItems(X), "]".
+setItems([Item1|MoreItems]) --&gt; setItem(Item1), setItems(MoreItems).
+setItems([Item1]) --&gt; setItem(Item1).
+setItem(char(C)) --&gt; [C], {\+(set_metachar([C]))}.
+set_metachar("\\").
+set_metachar("]").
+set_metachar("-").
+setItem(char(C)) --&gt; "\\", [C], {set_metachar([C])}.
+setItem(range(A,B)) --&gt; setItem(char(A)), "-", setItem(char(B)).
+
+</pre>
+
+<h2>Logic of Regular Expression Matching and Selection</h2>
+<pre>%
+% rematch1(RE, S, Unmatched, Selected) is true if RE matches
+% a string Prefix such that S = [Prefix|Unmatched], and
+% Selected is the list of substrings of Prefix that matched
+% the parenthesized components of RE.
+
+rematch1(union(RE1, _RE2), S, U, Selected) :- 
+  rematch1(RE1, S, U, Selected).
+rematch1(union(_RE1, RE2), S, U, Selected) :- 
+  rematch1(RE2, S, U, Selected).
+rematch1(conc(RE1, RE2), S, U, Selected) :- 
+  rematch1(RE1, S, U1, Sel1),
+  rematch1(RE2, U1, U, Sel2),
+  append(Sel1, Sel2, Selected).
+% Try longest match first.
+rematch1(star(RE), S, U, Selected) :-
+  rematch1(RE, S, U1, Sel1),
+  rematch1(star(RE), U1, U, Sel2),
+  append(Sel1, Sel2, Selected).
+rematch1(star(_RE), S, S, []).
+rematch1(plus(RE), S, U, Selected) :-
+  rematch1(RE, S, U1, Sel1),
+  rematch1(star(RE), U1, U, Sel2),
+  append(Sel1, Sel2, Selected).
+% Match a group and add it to the end of
+% list of selected items from the submatch.
+rematch1(group(RE), S, U, Selected) :-
+  rematch1(RE, S, U, Sel1),
+  append(P, U, S),
+  append(Sel1, [P], Selected).
+
+rematch1(any, [_C1|U], U, []).
+% Note that the following works for matching both regular
+% characters and metacharacters.  
+rematch1(char(C), [C|U], U, []).
+
+rematch1(eos, [], [], []).
+
+rematch1(negSet(Set), [C|U], U, []) :-
+  \+(charSetMember(C, Set)).
+
+rematch1(posSet(Set), [C|U], U, []) :-
+  charSetMember(C, Set).
+
+charSetMember(C, [char(C) | _]).
+charSetMember(C, [range(C1, C2) | _]) :-
+  C1 =&lt; C,
+  C =&lt; C2.
+charSetMember(C, [_|T]) :- charSetMember(C, T).
+</pre>
+
+<h2>Lexical Analysis with Regular Expressions</h2>
+<ul>
+<li>Define a regular expression that matches and extracts tokens.
+</li><li>Repeatedly apply this expression until all input is consumed.
+</li></ul>
+<p>
+The <code>tokenize</code>/3 predicate will do the whole job,
+given a satisfactory regular expression!
+</p><pre>%
+%  tokenize(RE, Input, Output) is true if
+%    - RE is the string representation of a regular expression,
+%         with tokens identified by parenthesized subexpressions 
+%    - Input is an input string
+%    - Output is the list of tokens extracted by repeated application
+%      of RE to Input.
+%
+tokenize(RE, Input, Output) :-
+  re(Parsed_RE, RE, []),
+  tokenize2(Parsed_RE, Input, Output).
+  
+tokenize2(_P_RE, [], []).
+tokenize2(P_RE, Input, Output) :-
+  rematch1(P_RE, Input, Unmatched, SelStrings),
+  names(Tokens, SelStrings),
+  tokenize2(P_RE, Unmatched, MoreTokens),
+  append(Tokens, MoreTokens, Output).
+  
+names([],[]).
+names([Sym1|MoreSymbols], [Str1|MoreStrings]) :-
+  name(Sym1, Str1), 
+  names(MoreSymbols, MoreStrings).
+</pre>
+<p>
+To use the tokenizer for lexical analysis, we now need only
+define a regular expression that specifies the 
+allowable forms of tokens and whitespace.
+Tokens should be included inside parenthesized regular
+expressions so they are returned; whitespace should not
+be included in parenthesized expressions.  For example,
+if we consider the tokens for the numeric expression grammar
+described previously, an appropriate
+regular expression is "<code> +|([0-9]+|\+|-)</code>".
+Note that this expression defines 4 alternative string
+types: (1) sequences of one or more spaces ("<code> +</code>"),
+(2) sequences of one or more digits ("<code>[0-9]+</code>"),
+(3) the <code>+</code> operator (which must be escaped because
+it is a metacharacter), and (4) the <code>-</code> operator.
+However, only the last three are selected as tokens by
+inclusion within parentheses.
+</p><p>
+Finally, to use this expression in the Prolog tokenizer, the
+escape character itself must be escaped due to Prolog's string
+syntax conventions.
+</p><pre>| ?- ['/gfs1/CMPT/384/a5/regexp.pl'].
+yes
+| ?- tokenize(" +|([0-9]+|\\+|-)", "12 + 4 - 29", L).
+
+L = [12,+,4,-,29] ? 
+</pre>
+The tokenizer does all the work!
+<p>
+One additional point worth considering is that you can
+force Prolog to backtrack and undo decisions made by
+the "longest match" rule.  The following script illustrates
+what happens when each tokenization produced is
+rejected by the user typing the "<code>;</code>" operator.
+</p><pre>| ?- tokenize(" +|([0-9]+|\\+|-)", "12 + 4 - 29", L).
+
+L = [12,+,4,-,29] ? ;
+
+L = [12,+,4,-,2,9] ? ;
+
+L = [1,2,+,4,-,29] ? ;
+
+L = [1,2,+,4,-,2,9] ? ;
+
+no
+</pre>
+<h2>Concluding Remarks</h2>
+<p>
+The regular expression package defined here in Prolog is intended
+to illustrate both the power of regular expressions
+and their semantics in logical form.
+It is not intended to be a practical tool. 
+However, the built-in regular expression support provided
+by many scripting languages (Perl, Javascript and so on),
+Unix tools (emacs, ex, grep, and so on), and lexical analyzer
+generators (lex, flex, flex++, and so on) are indeed practical
+and can greatly simplify string processing.  
+The use of regular expressions for lexical analysis is
+a standard technique that is widely used in symbolic
+computing applications.
+
+
+
+
+
+</p></body></html>
