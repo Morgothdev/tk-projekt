@@ -1,0 +1,32 @@
+"""a*a*|a"""
+Regex(
+	ArrayBuffer(
+		SimpleRegex(
+			ArrayBuffer(
+				BasicRegex(
+					ZeroOrMore(
+						ElementaryRegex(
+							NonMeta(
+								a
+							)
+						)
+					)
+				), 
+				BasicRegex(
+					ZeroOrMore(
+						ElementaryRegex(
+							NonMeta(
+								a
+							)
+						)
+					)
+				)
+			)
+		), 
+		SimpleRegex(
+			ArrayBuffer(
+				BasicRegex(
+					ElementaryRegex(
+						NonMeta(
+							a
+						)))))))

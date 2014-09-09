@@ -1,0 +1,5 @@
+[info] Loading project definition from C:\Users\HOUSE\Desktop\tk\tk-projekt\project
+[info] Set current project to tk-projekt (in build file:/C:/Users/HOUSE/Desktop/tk/tk-projekt/)
+[info] Running runner.Runner 
+Regex(ArrayBuffer(SimpleRegex(ArrayBuffer(BasicRegex(ElementaryRegex(Regex(ArrayBuffer(SimpleRegex(ArrayBuffer(BasicRegex(ElementaryRegex(Regex(ArrayBuffer(SimpleRegex(ArrayBuffer(BasicRegex(ZeroOrMore(ElementaryRegex(NonMeta(e)))))))))))), SimpleRegex(ArrayBuffer(BasicRegex(ElementaryRegex(Regex(ArrayBuffer(SimpleRegex(ArrayBuffer(BasicRegex(OneOrMore(ElementaryRegex(NonMeta(f)))))))))))), SimpleRegex(ArrayBuffer(BasicRegex(ZeroOrMore(ElementaryRegex(NonMeta(a)))), BasicRegex(ElementaryRegex(NonMeta(a)))))))))))))
+[success] Total time: 2 s, completed 2014-04-18 14:13:05
